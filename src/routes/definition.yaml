@@ -4,8 +4,6 @@ info:
   version: "1.0.0"
 
 servers:
-  - url: https://xv0nyi1sta.execute-api.us-east-1.amazonaws.com/dev
-    description: Production server
   - url: http://localhost:8080
     description: Dev server
 
