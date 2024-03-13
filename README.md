@@ -87,12 +87,14 @@ Lista de frameworks y librerias que fueron usados para el proyecto:
 
 #### Opcional:
 
-1. Una vez desplegado el proyecto a aws puede agregar las siguientes lineas a definition.yaml debajo de 'server'
-   ```yaml
-   - url: URL_PROD
-     description: Produccion
+1. Una vez desplegado el proyecto a aws:
    ```
-2. Repita el paso 2 para local y empieze a testear con la url de prod
+   Cambie en todo el proyecto la variable CAMBIAR_URL por su url de prod
+   ```
+2. Entrar a la siguiente url para visualizar swagger y testear endpoints
+   ```url
+   http://localhost:8080/api-docs/#/
+   ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
