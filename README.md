@@ -24,7 +24,6 @@
 
 ## Acerca del proyecto
 
-[Softek Reto](https://app.swaggerhub.com/apis-docs/ALONSOGARAYP/softek-api/1.0.0)
 ![alt text](https://raw.githubusercontent.com/AlonsoGaray/softek-back/main/src/assets/Proyecto.png)
 
 Proyecto realizado para el reto tecnico de la empresa Softek. Tuvo una duracion de 3 dias maximo para entrega.
