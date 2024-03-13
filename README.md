@@ -48,7 +48,7 @@ Lista de frameworks y librerias que fueron usados para el proyecto:
 
 1. Clonar repositorio
    ```sh
-   git clone https://github.com/AlonsoGaray/softek-back.git
+   git clone https://github.com/AlonsoGaray/softek-back.git && cd softek-back
    ```
 2. Instalar todos los paquetes necesarios
    ```sh
