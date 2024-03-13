@@ -7,7 +7,7 @@
     "build": "rimraf dist && tsc",
     "deploy": "npm run schemas && npm run build && sls deploy",
     "offline": "npm run schemas && npm run build && sls offline",
-    "swagger": "npm run schemas && tsc -w & node dist/app.js",
+    "swagger": "npm run schemas && tsc -w && node dist/app.js",
     "schemas": "npm run schemas:openapi && npm run schemas:types",
     "schemas:openapi": "swagger-jsdoc -d src/routes/definition.yaml src/**/*.ts src/***/**/*.ts \"src/**/!(definition).yaml\" \"src/***/**/!(definition).yaml\" -o src/schemas/openapi.json",
     "schemas:types": "openapi-typescript src/schemas/openapi.json -o src/schemas/index.d.ts"
