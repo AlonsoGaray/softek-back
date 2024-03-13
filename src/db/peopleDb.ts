@@ -2,7 +2,7 @@ import db from "./dynamo";
 import { v4 as uuidv4 } from "uuid";
 import { PEOPLE_TABLE_NAME } from "../utils/constants";
 
-const getPeople = async () => {
+const obtenerPersonasSoftek = async () => {
   if (typeof PEOPLE_TABLE_NAME !== "string") {
     throw new Error("No se ha definido el nombre de la tabla");
   }
@@ -14,7 +14,7 @@ const getPeople = async () => {
   return await db.scan(params).promise();
 };
 
-const crearPersona = async (itemObject: CrearPersona) => {
+const crearPersonaSoftek = async (itemObject: CrearPersona) => {
   if (typeof PEOPLE_TABLE_NAME !== "string") {
     throw new Error("No se ha definido el nombre de la tabla");
   }
@@ -24,7 +24,9 @@ const crearPersona = async (itemObject: CrearPersona) => {
     Item: { id: uuidv4(), ...itemObject },
   };
 
-  return await db.put(params).promise();
+  await db.put(params).promise();
+
+  return params.Item;
 };
 
-export { getPeople, crearPersona };
+export { obtenerPersonasSoftek, crearPersonaSoftek };

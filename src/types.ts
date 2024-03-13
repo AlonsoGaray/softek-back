@@ -47,15 +47,7 @@ type CrearPersona = CrearGlobal & {
   especie: string;
 };
 
-type AtributosPeliculaTraducidos = CrearGlobal & {
-  episodio: number;
-  apertura: string;
+type CrearPelicula = CrearGlobal & {
   director: string;
-  productor: string;
   fecha_lanzamiento: string;
-  personajes: string[];
-  planetas: string[];
-  naves: string[];
-  vehiculos: string[];
-  especies: string[];
 };

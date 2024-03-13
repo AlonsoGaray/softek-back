@@ -10,6 +10,7 @@ provider:
   region: us-east-1
   environment:
     PEOPLE_TABLE_NAME: ${env:PEOPLE_TABLE_NAME}
+    FILMS_TABLE_NAME: ${env:FILMS_TABLE_NAME}
     ACCESS_KEY_ID: ${env:ACCESS_KEY_ID}
     SECRET_ACCESS_KEY: ${env:SECRET_ACCESS_KEY}
 

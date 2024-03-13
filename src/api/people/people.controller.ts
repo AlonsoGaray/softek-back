@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { getAllPeople, getPersonById } from "./people.service";
-import { crearPersona } from "../../db/people";
+import { crearPersonaSoftek, obtenerPersonasSoftek } from "../../db/peopleDb";
 
 async function getAllPeopleHandler(req: Request, res: Response) {
   const { pageNumber } = req.params;
@@ -10,7 +10,7 @@ async function getAllPeopleHandler(req: Request, res: Response) {
     const people = await getAllPeople(page);
     res.status(200).json(people);
   } catch (error) {
-    console.error("An error ocurred:", error);
+    console.error("getAllPeople ~ error:", error);
     res.status(500).json(error);
   }
 }
@@ -22,12 +22,22 @@ async function getPersonByIdHandler(req: Request, res: Response) {
     const person = await getPersonById(Number(id));
     res.status(200).json(person);
   } catch (error) {
-    console.error("An error ocurred:", error);
+    console.error("getPersonByIdHandler ~ error:", error);
     res.status(500).json(error);
   }
 }
 
-async function createPersonHandler(req: Request, res: Response) {
+async function obtenerPersonasSoftekHandler(req: Request, res: Response) {
+  try {
+    const response = await obtenerPersonasSoftek();
+    res.status(200).json(response);
+  } catch (error) {
+    console.error("obtenerPersonasSoftekHandler ~ error:", error);
+    res.status(500).json(error);
+  }
+}
+
+async function crearPeronaSoftekHandler(req: Request, res: Response) {
   const atributosRequeridos = ["nombre", "altura", "peso", "fecha_nacimiento", "genero", "especie"];
 
   const body = req.body as CrearPersona;
@@ -55,13 +65,17 @@ async function createPersonHandler(req: Request, res: Response) {
   }
 
   try {
-    const response = await crearPersona(req.body);
-    console.log("🚀 ~ createPersonHandler ~ response:", response);
-    res.status(201).json(response);
+    const response = await crearPersonaSoftek(req.body);
+    res.status(201).json({ Metodo: "CREAR PERSONA", Respuesta: "EXITOSO", Item: response });
   } catch (error) {
-    console.log("🚀 ~ createPersonHandler ~ error:", error);
-    res.status(401).json(error);
+    console.error("crearPeronaSoftekHandler ~ error:", error);
+    res.status(500).json(error);
   }
 }
 
-export { getAllPeopleHandler, getPersonByIdHandler, createPersonHandler };
+export {
+  getAllPeopleHandler,
+  getPersonByIdHandler,
+  crearPeronaSoftekHandler,
+  obtenerPersonasSoftekHandler,
+};
