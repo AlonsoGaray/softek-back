@@ -56,12 +56,12 @@ export interface components {
       total?: number;
       /**
        * @description URL para la siguiente pagina
-       * @example https://xv0nyi1sta.execute-api.us-east-1.amazonaws.com/dev/api/films/5
+       * @example https://example.com/dev/api/films/5
        */
       siguiente?: string | Record<string, never>;
       /**
        * @description URL para la anterior pagina
-       * @example https://xv0nyi1sta.execute-api.us-east-1.amazonaws.com/dev/api/films/3
+       * @example https://example.com/dev/api/films/3
        */
       anterior?: string | Record<string, never>;
       /** @description Lista de peliculas */
@@ -103,12 +103,12 @@ export interface components {
       total?: number;
       /**
        * @description URL para la siguiente pagina
-       * @example https://xv0nyi1sta.execute-api.us-east-1.amazonaws.com/dev/api/people/5
+       * @example https://example.com/dev/api/people/5
        */
       siguiente?: string | Record<string, never>;
       /**
        * @description URL para la anterior pagina
-       * @example https://xv0nyi1sta.execute-api.us-east-1.amazonaws.com/dev/api/people/3
+       * @example https://example.com/dev/api/people/3
        */
       anterior?: string | Record<string, never>;
       /** @description Lista de personas */

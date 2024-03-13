@@ -13,13 +13,13 @@ components:
             - string
             - null
           description: URL para la siguiente pagina
-          example: "https://xv0nyi1sta.execute-api.us-east-1.amazonaws.com/dev/api/people/5"
+          example: "https://example.com/dev/api/people/5"
         anterior:
           type:
             - string
             - null
           description: URL para la anterior pagina
-          example: "https://xv0nyi1sta.execute-api.us-east-1.amazonaws.com/dev/api/people/3"
+          example: "https://example.com/dev/api/people/3"
         resultados:
           type: array
           description: Lista de personas

@@ -3,15 +3,8 @@ export default function traducirRespuesta(data: any, tipo: string, pageNumber: n
     case "people":
       return {
         total: data.count,
-        siguiente: `https://xv0nyi1sta.execute-api.us-east-1.amazonaws.com/dev/api/people/${
-          pageNumber + 1
-        }`,
-        anterior:
-          pageNumber === 1
-            ? null
-            : `https://xv0nyi1sta.execute-api.us-east-1.amazonaws.com/dev/api/people/${
-                pageNumber - 1
-              }`,
+        siguiente: `CAMBIAR_URL/api/people/${pageNumber + 1}`,
+        anterior: pageNumber === 1 ? null : `https://CAMBIAR_URL/api/people/${pageNumber - 1}`,
         resultados: (data.results as AtributosPersona[]).map((result: AtributosPersona) => ({
           ...traducirAtributosGlobales(result),
           ...traducirAtributosPersona(result),

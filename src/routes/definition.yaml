@@ -4,6 +4,8 @@ info:
   version: "1.0.0"
 
 servers:
+  - url: CAMBIAR_URL
+    description: Produccion
   - url: http://localhost:8080
     description: Dev server
 
