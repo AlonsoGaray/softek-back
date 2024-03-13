@@ -1,0 +1,86 @@
+components:
+  schemas:
+    PeliculaSWAPI:
+      description: pelicula encontrada en SWAPI
+      type: object
+      properties:
+        titulo:
+          type: string
+          description: Nombre de la pelicula
+          example: A New Hope
+        creado:
+          type: string
+          description: Fecha de creacion del registro
+          example: "2014-12-09T13:50:51.644000Z"
+        editado:
+          type: string
+          description: Fecha de edicion del registro
+          example: "2014-12-20T21:17:56.891000Z"
+        id_episodio:
+          type: integer
+          description: Id del episodio
+          example: 3
+        texto_apertura:
+          type: string
+          description: Texto de apertura de la pelicula
+          example: "It is a period of civil war.\r\nRebel spaceships, striking\r\nfrom a hidden base, have won\r\ntheir first victory against\r\nthe evil Galactic Empire.\r\n\r\nDuring the battle, Rebel\r\nspies managed to steal ..."
+        director:
+          type: string
+          description: Director de la pelicula
+          example: George Lucas
+        productor:
+          type: string
+          description: Productor de la pelicula
+          example: Gary Kurtz, Rick McCallum
+        fecha_lanzamiento:
+          type: string
+          description: Fecha de lanzamiento de la pelicula
+          example: 1977-05-25
+        personajes:
+          type: array
+          description: Lista de personajes en la pelicula
+          items:
+            type: string
+            example: "https://swapi.py4e.com/api/people/1/"
+        planetas:
+          type: array
+          description: Lista de planetas en la pelicula
+          items:
+            type: string
+            example: "https://swapi.py4e.com/api/planets/1/"
+        naves:
+          type: array
+          description: Lista de naves en la pelicula
+          items:
+            type: string
+            example: "https://swapi.py4e.com/api/starships/2/"
+        vehiculos:
+          type: array
+          description: Lista de vehiculos en la pelicula
+          items:
+            type: string
+            example: "https://swapi.py4e.com/api/vehicles/4/"
+        especies:
+          type: array
+          description: Lista de especies en la pelicula
+          items:
+            type: string
+            example: "https://swapi.py4e.com/api/species/1/"
+    PeliculaSoftek:
+      properties:
+        id:
+          type: string
+          description: Identificador unico de la pelicula
+          example: "f3463eb5-4124-4cf8-9c64-cfcb77cd8819"
+        titulo:
+          type: string
+          description: Nombre de la pelicula
+          example: Softek Movie
+        fecha_lanzamiento:
+          type: string
+          description: Fecha de nacimiento de la pelicula
+          example: 19-12-1995
+        director:
+          type: string
+          description: Especie de la pelicula
+          example: Alonso Garay

@@ -1,0 +1,54 @@
+components:
+  schemas:
+    TodasPersonasSWAPI:
+      description: Todas las personas encontradas en SWAPI
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total numero de personas encontradas
+          example: 82
+        siguiente:
+          type:
+            - string
+            - null
+          description: URL para la siguiente pagina
+          example: "https://xv0nyi1sta.execute-api.us-east-1.amazonaws.com/dev/api/people/5"
+        anterior:
+          type:
+            - string
+            - null
+          description: URL para la anterior pagina
+          example: "https://xv0nyi1sta.execute-api.us-east-1.amazonaws.com/dev/api/people/3"
+        resultados:
+          type: array
+          description: Lista de personas
+          items:
+            $ref: "#/components/schemas/PersonaSWAPI"
+    TodasPersonasSoftek:
+      properties:
+        Count:
+          type: integer
+          description: Numero de personas encontradas
+          example: 3
+        Items:
+          type: array
+          description: Lista de personas
+          items:
+            $ref: "#/components/schemas/PersonaSoftek"
+        ScannedCount:
+          type: integer
+          description: Numero de personas escaneadas
+          example: 3
+    CrearPersonaSoftekResponse:
+      properties:
+        Metodo:
+          type: string
+          description: Metodo utilizado
+          example: CREAR PERSONA
+        Respuesta:
+          type: string
+          description: Respuesta del metodo
+          example: EXITOSO
+        Item:
+          $ref: "#/components/schemas/PersonaSoftek"

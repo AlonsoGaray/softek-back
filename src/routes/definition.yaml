@@ -1,0 +1,21 @@
+openapi: "3.0.3"
+info:
+  title: "Softek API"
+  version: "1.0.0"
+
+servers:
+  - url: https://xv0nyi1sta.execute-api.us-east-1.amazonaws.com/dev
+    description: Production server
+  - url: http://localhost:8080
+    description: Dev server
+
+tags:
+  - name: health
+    description: Health check
+  - name: swapi
+    description: SWAPI endpoints
+  - name: softek
+    description: Softek endpoints
+externalDocs:
+  description: Repositorio del Reto tecnico Softek
+  url: https://github.com/AlonsoGaray/softek-back

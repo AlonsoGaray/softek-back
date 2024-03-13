@@ -1,8 +1,4 @@
-export default function traducirRespuesta(
-  data: any,
-  tipo: string,
-  pageNumber: number = 1
-) {
+export default function traducirRespuesta(data: any, tipo: string, pageNumber: number = 1) {
   switch (tipo) {
     case "people":
       return {
@@ -16,12 +12,10 @@ export default function traducirRespuesta(
             : `https://xv0nyi1sta.execute-api.us-east-1.amazonaws.com/dev/api/people/${
                 pageNumber - 1
               }`,
-        resultados: (data.results as AtributosPersona[]).map(
-          (result: AtributosPersona) => ({
-            ...traducirAtributosGlobales(result),
-            ...traducirAtributosPersona(result),
-          })
-        ),
+        resultados: (data.results as AtributosPersona[]).map((result: AtributosPersona) => ({
+          ...traducirAtributosGlobales(result),
+          ...traducirAtributosPersona(result),
+        })),
       };
     case "person":
       return {
@@ -33,12 +27,10 @@ export default function traducirRespuesta(
         total: data.count,
         siguiente: data.next,
         anterior: data.previous,
-        resultados: (data.results as AtributosPelicula[]).map(
-          (result: AtributosPelicula) => ({
-            ...traducirAtributosGlobales(result),
-            ...traducirAtributosPelicula(result),
-          })
-        ),
+        resultados: (data.results as AtributosPelicula[]).map((result: AtributosPelicula) => ({
+          ...traducirAtributosGlobales(result),
+          ...traducirAtributosPelicula(result),
+        })),
       };
     case "film":
       return {
@@ -51,11 +43,12 @@ export default function traducirRespuesta(
 }
 
 function traducirAtributosGlobales(data: AtributosGlobales) {
-  return { nombre: data.name, creado: data.created, editado: data.edited };
+  return { creado: data.created, editado: data.edited };
 }
 
 function traducirAtributosPersona(data: AtributosPersona) {
   return {
+    nombre: data.name,
     url: data.url,
     altura: data.height,
     peso: data.mass,
@@ -74,6 +67,7 @@ function traducirAtributosPersona(data: AtributosPersona) {
 
 function traducirAtributosPelicula(data: AtributosPelicula) {
   return {
+    titulo: data.title,
     id_episodio: data.episode_id,
     texto_apertura: data.opening_crawl,
     director: data.director,

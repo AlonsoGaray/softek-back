@@ -1,0 +1,791 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Softek API",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://xv0nyi1sta.execute-api.us-east-1.amazonaws.com/dev",
+      "description": "Production server"
+    },
+    {
+      "url": "http://localhost:8080",
+      "description": "Dev server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "health",
+      "description": "Health check"
+    },
+    {
+      "name": "swapi",
+      "description": "SWAPI endpoints"
+    },
+    {
+      "name": "softek",
+      "description": "Softek endpoints"
+    }
+  ],
+  "externalDocs": {
+    "description": "Repositorio del Reto tecnico Softek",
+    "url": "https://github.com/AlonsoGaray/softek-back"
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "description": "Health check endpoint for Softek API",
+        "operationId": "healthCheck",
+        "tags": [
+          "health"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthStatus"
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/api/films/": {
+      "get": {
+        "description": "Obtener todas las peliculas de SWAPI",
+        "operationId": "getAllFilms",
+        "tags": [
+          "swapi"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TodasPersonasSWAPI"
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/api/films/id/{id}": {
+      "get": {
+        "description": "Obtener una pelicula de SWAPI de acuerdo a su id",
+        "operationId": "getFilmById",
+        "tags": [
+          "swapi"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id de la pelicula",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonaSWAPI"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Persona no encontrada"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/api/films/softek/v1/": {
+      "get": {
+        "description": "Obtener todas las peliculas en Softek",
+        "operationId": "obtenerPeliculasSoftek",
+        "tags": [
+          "softek"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TodasPersonasSoftek"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Persona no encontrada"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "post": {
+        "description": "Crear una pelicula para la bd de Softek",
+        "operationId": "crearPeliculaSoftek",
+        "tags": [
+          "softek"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nombre": {
+                    "type": "string"
+                  },
+                  "fecha_lanzamiento": {
+                    "type": "string"
+                  },
+                  "director": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CrearPersonaSoftekResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Persona no encontrada"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/api/people/": {
+      "get": {
+        "description": "Obtener todas las personas de SWAPI",
+        "operationId": "getAllPeople",
+        "tags": [
+          "swapi"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TodasPersonasSWAPI"
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/api/people/{pageNumber}": {
+      "get": {
+        "description": "Obtener todas las personas de SWAPI de una pagina especifica",
+        "operationId": "getAllPeople2",
+        "tags": [
+          "swapi"
+        ],
+        "parameters": [
+          {
+            "name": "pageNumber",
+            "in": "path",
+            "description": "Numero de la pagina",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TodasPersonasSWAPI"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Persona no encontrada"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/api/people/id/{id}": {
+      "get": {
+        "description": "Obtener una personas de SWAPI de acuerdo a su id",
+        "operationId": "getPersonById",
+        "tags": [
+          "swapi"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id de la persona",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonaSWAPI"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Persona no encontrada"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/api/people/softek/v1/": {
+      "get": {
+        "description": "Obtener todas las personas en Softek",
+        "operationId": "obtenerPersonasSoftek",
+        "tags": [
+          "softek"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TodasPersonasSoftek"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Persona no encontrada"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "post": {
+        "description": "Crear una persona para la bd de Softek",
+        "operationId": "crearPeronaSoftek",
+        "tags": [
+          "softek"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nombre": {
+                    "type": "string"
+                  },
+                  "altura": {
+                    "type": "string"
+                  },
+                  "peso": {
+                    "type": "string"
+                  },
+                  "fecha_nacimiento": {
+                    "type": "string"
+                  },
+                  "genero": {
+                    "type": "string"
+                  },
+                  "especie": {
+                    "type": "string",
+                    "enum": [
+                      "Humano",
+                      "Androide",
+                      "Wookie"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CrearPersonaSoftekResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Persona no encontrada"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "TodasPeliculasSWAPI": {
+        "description": "Todas las peliculas encontradas en SWAPI",
+        "type": "object",
+        "properties": {
+          "total": {
+            "type": "integer",
+            "description": "Total numero de personas encontradas",
+            "example": 5
+          },
+          "siguiente": {
+            "type": [
+              "string",
+              null
+            ],
+            "description": "URL para la siguiente pagina",
+            "example": "https://xv0nyi1sta.execute-api.us-east-1.amazonaws.com/dev/api/films/5"
+          },
+          "anterior": {
+            "type": [
+              "string",
+              null
+            ],
+            "description": "URL para la anterior pagina",
+            "example": "https://xv0nyi1sta.execute-api.us-east-1.amazonaws.com/dev/api/films/3"
+          },
+          "resultados": {
+            "type": "array",
+            "description": "Lista de peliculas",
+            "items": {
+              "$ref": "#/components/schemas/PeliculaSWAPI"
+            }
+          }
+        }
+      },
+      "TodasPersonasSoftek": {
+        "properties": {
+          "Count": {
+            "type": "integer",
+            "description": "Numero de personas encontradas",
+            "example": 3
+          },
+          "Items": {
+            "type": "array",
+            "description": "Lista de personas",
+            "items": {
+              "$ref": "#/components/schemas/PersonaSoftek"
+            }
+          },
+          "ScannedCount": {
+            "type": "integer",
+            "description": "Numero de personas escaneadas",
+            "example": 3
+          }
+        }
+      },
+      "CrearPersonaSoftekResponse": {
+        "properties": {
+          "Metodo": {
+            "type": "string",
+            "description": "Metodo utilizado",
+            "example": "CREAR PERSONA"
+          },
+          "Respuesta": {
+            "type": "string",
+            "description": "Respuesta del metodo",
+            "example": "EXITOSO"
+          },
+          "Item": {
+            "$ref": "#/components/schemas/PersonaSoftek"
+          }
+        }
+      },
+      "TodasPersonasSWAPI": {
+        "description": "Todas las personas encontradas en SWAPI",
+        "type": "object",
+        "properties": {
+          "total": {
+            "type": "integer",
+            "description": "Total numero de personas encontradas",
+            "example": 82
+          },
+          "siguiente": {
+            "type": [
+              "string",
+              null
+            ],
+            "description": "URL para la siguiente pagina",
+            "example": "https://xv0nyi1sta.execute-api.us-east-1.amazonaws.com/dev/api/people/5"
+          },
+          "anterior": {
+            "type": [
+              "string",
+              null
+            ],
+            "description": "URL para la anterior pagina",
+            "example": "https://xv0nyi1sta.execute-api.us-east-1.amazonaws.com/dev/api/people/3"
+          },
+          "resultados": {
+            "type": "array",
+            "description": "Lista de personas",
+            "items": {
+              "$ref": "#/components/schemas/PersonaSWAPI"
+            }
+          }
+        }
+      },
+      "ErrorModel": {
+        "type": "object",
+        "required": [
+          "message"
+        ],
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "HealthStatus": {
+        "description": "Health check status",
+        "type": "object",
+        "required": [
+          "status",
+          "timestamp"
+        ],
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "OK"
+            ]
+          }
+        }
+      },
+      "PeliculaSWAPI": {
+        "description": "pelicula encontrada en SWAPI",
+        "type": "object",
+        "properties": {
+          "titulo": {
+            "type": "string",
+            "description": "Nombre de la pelicula",
+            "example": "A New Hope"
+          },
+          "creado": {
+            "type": "string",
+            "description": "Fecha de creacion del registro",
+            "example": "2014-12-09T13:50:51.644000Z"
+          },
+          "editado": {
+            "type": "string",
+            "description": "Fecha de edicion del registro",
+            "example": "2014-12-20T21:17:56.891000Z"
+          },
+          "id_episodio": {
+            "type": "integer",
+            "description": "Id del episodio",
+            "example": 3
+          },
+          "texto_apertura": {
+            "type": "string",
+            "description": "Texto de apertura de la pelicula",
+            "example": "It is a period of civil war.\r\nRebel spaceships, striking\r\nfrom a hidden base, have won\r\ntheir first victory against\r\nthe evil Galactic Empire.\r\n\r\nDuring the battle, Rebel\r\nspies managed to steal ..."
+          },
+          "director": {
+            "type": "string",
+            "description": "Director de la pelicula",
+            "example": "George Lucas"
+          },
+          "productor": {
+            "type": "string",
+            "description": "Productor de la pelicula",
+            "example": "Gary Kurtz, Rick McCallum"
+          },
+          "fecha_lanzamiento": {
+            "type": "string",
+            "description": "Fecha de lanzamiento de la pelicula",
+            "example": "1977-05-25"
+          },
+          "personajes": {
+            "type": "array",
+            "description": "Lista de personajes en la pelicula",
+            "items": {
+              "type": "string",
+              "example": "https://swapi.py4e.com/api/people/1/"
+            }
+          },
+          "planetas": {
+            "type": "array",
+            "description": "Lista de planetas en la pelicula",
+            "items": {
+              "type": "string",
+              "example": "https://swapi.py4e.com/api/planets/1/"
+            }
+          },
+          "naves": {
+            "type": "array",
+            "description": "Lista de naves en la pelicula",
+            "items": {
+              "type": "string",
+              "example": "https://swapi.py4e.com/api/starships/2/"
+            }
+          },
+          "vehiculos": {
+            "type": "array",
+            "description": "Lista de vehiculos en la pelicula",
+            "items": {
+              "type": "string",
+              "example": "https://swapi.py4e.com/api/vehicles/4/"
+            }
+          },
+          "especies": {
+            "type": "array",
+            "description": "Lista de especies en la pelicula",
+            "items": {
+              "type": "string",
+              "example": "https://swapi.py4e.com/api/species/1/"
+            }
+          }
+        }
+      },
+      "PeliculaSoftek": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Identificador unico de la pelicula",
+            "example": "f3463eb5-4124-4cf8-9c64-cfcb77cd8819"
+          },
+          "titulo": {
+            "type": "string",
+            "description": "Nombre de la pelicula",
+            "example": "Softek Movie"
+          },
+          "fecha_lanzamiento": {
+            "type": "string",
+            "description": "Fecha de nacimiento de la pelicula",
+            "example": "19-12-1995"
+          },
+          "director": {
+            "type": "string",
+            "description": "Especie de la pelicula",
+            "example": "Alonso Garay"
+          }
+        }
+      },
+      "PersonaSWAPI": {
+        "description": "Persona encontrada en SWAPI",
+        "type": "object",
+        "properties": {
+          "nombre": {
+            "type": "string",
+            "description": "Nombre de la persona",
+            "example": "Luke Skywalker"
+          },
+          "creado": {
+            "type": "string",
+            "description": "Fecha de creacion del registro",
+            "example": "2014-12-09T13:50:51.644000Z"
+          },
+          "editado": {
+            "type": "string",
+            "description": "Fecha de edicion del registro",
+            "example": "2014-12-20T21:17:56.891000Z"
+          },
+          "url": {
+            "type": "string",
+            "description": "URL de la persona",
+            "example": "https://swapi.py4e.com/api/people/1/"
+          },
+          "altura": {
+            "type": "string",
+            "description": "Altura de la persona",
+            "example": 172
+          },
+          "peso": {
+            "type": "string",
+            "description": "Peso de la persona",
+            "example": "77"
+          },
+          "color_cabello": {
+            "type": "string",
+            "description": "Color de cabello de la persona",
+            "example": "blond"
+          },
+          "color_piel": {
+            "type": "string",
+            "description": "Color de piel de la persona",
+            "example": "fair"
+          },
+          "color_ojos": {
+            "type": "string",
+            "description": "Color de ojos de la persona",
+            "example": "blue"
+          },
+          "fecha_nacimiento": {
+            "type": "string",
+            "description": "Fecha de nacimiento de la persona",
+            "example": "19BBY"
+          },
+          "genero": {
+            "type": "string",
+            "description": "Genero de la persona",
+            "example": "male"
+          },
+          "planeta_natal": {
+            "type": "string",
+            "description": "URL del planeta natal de la persona",
+            "example": "https://swapi.py4e.com/api/planets/1/"
+          },
+          "peliculas": {
+            "type": "array",
+            "description": "Lista de peliculas en las que aparece la persona",
+            "items": {
+              "type": "string",
+              "example": "https://swapi.py4e.com/api/films/1/"
+            }
+          },
+          "especies": {
+            "type": "array",
+            "description": "Lista de especies a las que pertenece la persona",
+            "items": {
+              "type": "string",
+              "example": "https://swapi.py4e.com/api/species/1/"
+            }
+          },
+          "vehiculos": {
+            "type": "array",
+            "description": "Lista de vehiculos que ha manejado la persona",
+            "items": {
+              "type": "string",
+              "example": "https://swapi.py4e.com/api/vehicles/14/"
+            }
+          },
+          "naves": {
+            "type": "array",
+            "description": "Lista de naves que ha manejado la persona",
+            "items": {
+              "type": "string",
+              "example": "https://swapi.py4e.com/api/starships/12/"
+            }
+          }
+        }
+      },
+      "PersonaSoftek": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Identificador unico de la persona",
+            "example": "f3463eb5-4124-4cf8-9c64-cfcb77cd8819"
+          },
+          "nombre": {
+            "type": "string",
+            "description": "Nombre de la persona",
+            "example": "hola test"
+          },
+          "fecha_nacimiento": {
+            "type": "string",
+            "description": "Fecha de nacimiento de la persona",
+            "example": "19-12-1995"
+          },
+          "especie": {
+            "type": "string",
+            "enum": [
+              "Humano",
+              "Androide",
+              "Wookiee"
+            ],
+            "description": "Especie de la persona",
+            "example": "Androide"
+          },
+          "altura": {
+            "type": "string",
+            "description": "Altura de la persona",
+            "example": "1170cm"
+          },
+          "peso": {
+            "type": "string",
+            "description": "Peso de la persona",
+            "example": "901kg"
+          },
+          "genero": {
+            "type": "string",
+            "description": "Genero de la persona",
+            "example": "Hombre"
+          }
+        }
+      }
+    },
+    "responses": {
+      "InternalServerError": {
+        "description": "Internal server error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorModel"
+            }
+          }
+        }
+      },
+      "NotFoundError": {
+        "description": "Not found error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorModel"
+            }
+          }
+        }
+      }
+    }
+  }
+}

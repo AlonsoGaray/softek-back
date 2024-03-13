@@ -1,0 +1,112 @@
+components:
+  schemas:
+    PersonaSWAPI:
+      description: Persona encontrada en SWAPI
+      type: object
+      properties:
+        nombre:
+          type: string
+          description: Nombre de la persona
+          example: Luke Skywalker
+        creado:
+          type: string
+          description: Fecha de creacion del registro
+          example: "2014-12-09T13:50:51.644000Z"
+        editado:
+          type: string
+          description: Fecha de edicion del registro
+          example: "2014-12-20T21:17:56.891000Z"
+        url:
+          type: string
+          description: URL de la persona
+          example: "https://swapi.py4e.com/api/people/1/"
+        altura:
+          type: string
+          description: Altura de la persona
+          example: 172
+        peso:
+          type: string
+          description: Peso de la persona
+          example: "77"
+        color_cabello:
+          type: string
+          description: Color de cabello de la persona
+          example: blond
+        color_piel:
+          type: string
+          description: Color de piel de la persona
+          example: fair
+        color_ojos:
+          type: string
+          description: Color de ojos de la persona
+          example: blue
+        fecha_nacimiento:
+          type: string
+          description: Fecha de nacimiento de la persona
+          example: 19BBY
+        genero:
+          type: string
+          description: Genero de la persona
+          example: male
+        planeta_natal:
+          type: string
+          description: URL del planeta natal de la persona
+          example: "https://swapi.py4e.com/api/planets/1/"
+        peliculas:
+          type: array
+          description: Lista de peliculas en las que aparece la persona
+          items:
+            type: string
+            example: "https://swapi.py4e.com/api/films/1/"
+        especies:
+          type: array
+          description: Lista de especies a las que pertenece la persona
+          items:
+            type: string
+            example: "https://swapi.py4e.com/api/species/1/"
+        vehiculos:
+          type: array
+          description: Lista de vehiculos que ha manejado la persona
+          items:
+            type: string
+            example: "https://swapi.py4e.com/api/vehicles/14/"
+        naves:
+          type: array
+          description: Lista de naves que ha manejado la persona
+          items:
+            type: string
+            example: "https://swapi.py4e.com/api/starships/12/"
+    PersonaSoftek:
+      properties:
+        id:
+          type: string
+          description: Identificador unico de la persona
+          example: "f3463eb5-4124-4cf8-9c64-cfcb77cd8819"
+        nombre:
+          type: string
+          description: Nombre de la persona
+          example: hola test
+        fecha_nacimiento:
+          type: string
+          description: Fecha de nacimiento de la persona
+          example: 19-12-1995
+        especie:
+          type: string
+          enum:
+            - Humano
+            - Androide
+            - Wookiee
+          description: Especie de la persona
+          example: Androide
+        altura:
+          type: string
+          description: Altura de la persona
+          example: 1170cm
+        peso:
+          type: string
+          description: Peso de la persona
+          example: 901kg
+        genero:
+          type: string
+          description: Genero de la persona
+          example: Hombre

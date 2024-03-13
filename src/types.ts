@@ -1,10 +1,10 @@
 type AtributosGlobales = {
-  name: string;
   created: string;
   edited: string;
 };
 
 type AtributosPersona = AtributosGlobales & {
+  name: string;
   height: string;
   mass: string;
   hair_color: string;
@@ -21,6 +21,7 @@ type AtributosPersona = AtributosGlobales & {
 };
 
 type AtributosPelicula = AtributosGlobales & {
+  title: string;
   episode_id: number;
   opening_crawl: string;
   director: string;
